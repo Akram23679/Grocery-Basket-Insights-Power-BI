@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grocery Basket Insights · Akram Ali</title>
+  <meta name="description" content="Power BI market analysis of an online grocery store: 63,100 customers, 1M+ order rows, 20 business questions and six recommendations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<input type="checkbox" id="theme" class="sr" aria-label="Dark theme">
+<div class="page">
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><i></i>akram.data</a>
+    <nav aria-label="Sections">
+      <a href="#brief">Brief</a><a href="#data">Data</a><a href="#dashboard">Dashboard</a><a href="#findings">Findings</a><a href="#actions">Actions</a>
+    </nav>
+    <label class="theme-btn" for="theme" title="Switch colour theme">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+    </label>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <span class="pill"><i></i>Client project · Power BI · October 2026</span>
+      <h1>Grocery Basket Insights: <em>what 63,100 shoppers buy, and when.</em></h1>
+      <p class="lede">A market analysis for an online grocery store. I joined <b>five database tables</b> with over a million order rows, answered <b>20 business questions</b> in an eight-page Power BI dashboard, and turned the results into <b>six actions</b> management can start this quarter.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#dashboard">See the dashboard <span aria-hidden="true">→</span></a>
+        <a class="btn ghost" href="#walkthrough">Watch the walkthrough</a>
+      </div>
+      <div class="tags">
+        <span class="tag">MySQL</span><span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">Power Query</span><span class="tag">Data modelling</span><span class="tag">Client report</span>
+      </div>
+    </div>
+
+    <div class="dcard" aria-label="Key numbers from the analysis">
+      <input type="radio" name="view" id="v-cust" class="sr" checked>
+      <input type="radio" name="view" id="v-reo" class="sr">
+      <input type="radio" name="view" id="v-bask" class="sr">
+      <div class="dcard-head">
+        <div class="tabs">
+          <label class="tab" for="v-cust">Customers</label>
+          <label class="tab" for="v-reo">Reorders</label>
+          <label class="tab" for="v-bask">Baskets</label>
+        </div>
+        <span class="code">CDACL-006</span>
+      </div>
+
+      <div class="view view-cust">
+        <div class="kpis">
+          <div class="kpi"><small>Customers</small><strong>63,100</strong></div>
+          <div class="kpi"><small>Days between orders</small><strong>15.4</strong></div>
+          <div class="kpi"><small>Orders per user</small><strong>16.6</strong></div>
+        </div>
+        <div class="bars">
+          <div class="bars-title">Customers by how often they order (% of 63,100)</div>
+          <div class="brow"><span class="lbl">Every 0–7 days</span><span class="track"><span class="fill" style="width:35.0%"></span></span><span class="val">12%</span></div>
+          <div class="brow lead"><span class="lbl">Every 8–14 days</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="val">34%</span></div>
+          <div class="brow"><span class="lbl">Every 15–21 days</span><span class="track"><span class="fill" style="width:91.6%"></span></span><span class="val">31%</span></div>
+          <div class="brow low"><span class="lbl">Every 22–30 days</span><span class="track"><span class="fill" style="width:68.5%"></span></span><span class="val">23%</span></div>
+          <p class="takeaway"><b>Takeaway:</b> most customers return every one to three weeks; the 14,641 who wait 22–30 days are most at risk.</p>
+        </div>
+      </div>
+
+      <div class="view view-reo">
+        <div class="kpis">
+          <div class="kpi"><small>Items reordered</small><strong>59.9%</strong></div>
+          <div class="kpi"><small>Top product rate</small><strong>92.0%</strong></div>
+          <div class="kpi"><small>Products reordered</small><strong>19,952</strong></div>
+        </div>
+        <div class="bars">
+          <div class="bars-title">Reorder rate by aisle (share of items that are repeat buys)</div>
+          <div class="brow lead"><span class="lbl">Milk</span><span class="track"><span class="fill" style="width:79.2%"></span></span><span class="val">79.2%</span></div>
+          <div class="brow"><span class="lbl">All items</span><span class="track"><span class="fill" style="width:59.9%"></span></span><span class="val">59.9%</span></div>
+          <div class="brow"><span class="lbl">Average aisle</span><span class="track"><span class="fill" style="width:50.0%"></span></span><span class="val">50.0%</span></div>
+          <div class="brow low"><span class="lbl">Spices</span><span class="track"><span class="fill" style="width:16.5%"></span></span><span class="val">16.5%</span></div>
+          <p class="takeaway"><b>Takeaway:</b> fresh staples bring people back; occasional aisles such as spices rarely get reordered.</p>
+        </div>
+      </div>
+
+      <div class="view view-bask">
+        <div class="kpis">
+          <div class="kpi"><small>Avg basket</small><strong>10.5</strong></div>
+          <div class="kpi"><small>Median basket</small><strong>9</strong></div>
+          <div class="kpi"><small>≤ 10 items</small><strong>60%</strong></div>
+        </div>
+        <div class="bars">
+          <div class="bars-title">Average items per order, by day (axis 0–12)</div>
+          <div class="brow lead"><span class="lbl">Sunday</span><span class="track"><span class="fill" style="width:96.7%"></span></span><span class="val">11.6</span></div>
+          <div class="brow"><span class="lbl">Saturday</span><span class="track"><span class="fill" style="width:91.7%"></span></span><span class="val">11.0</span></div>
+          <div class="brow"><span class="lbl">All days</span><span class="track"><span class="fill" style="width:87.5%"></span></span><span class="val">10.5</span></div>
+          <div class="brow low"><span class="lbl">Wednesday</span><span class="track"><span class="fill" style="width:80.0%"></span></span><span class="val">9.6</span></div>
+          <p class="takeaway"><b>Takeaway:</b> weekend baskets run about 20% larger than midweek ones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 brief -->
+  <section class="block" id="brief">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">01 / brief</div><h2>Understand how customers shop, then use it to sell more.</h2></div>
+        <p>The client, an online grocery store, wanted to know which products drive orders, when demand peaks and how loyal its customers are, so it could improve marketing and customer satisfaction. The brief came as 20 questions, which I grouped into four themes.</p>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><strong>1.05M</strong><span>order rows analysed</span></div>
+        <div class="stat"><strong>49,355</strong><span>products in 134 aisles</span></div>
+        <div class="stat"><strong>20</strong><span>business questions answered</span></div>
+        <div class="stat"><strong>8</strong><span>Power BI report pages</span></div>
+      </div>
+      <div class="qgroups">
+        <div class="qg"><h3>Catalogue</h3><div class="qs">Q1 · Q2 · Q3 · Q20</div><p>Aisles, departments and how the 49,355 products are spread across them.</p></div>
+        <div class="qg"><h3>Time</h3><div class="qs">Q7 · Q8 · Q15 · Q18</div><p>When customers order, by hour of day and day of week.</p></div>
+        <div class="qg"><h3>Products and baskets</h3><div class="qs">Q4 · Q9 · Q11–Q14 · Q16</div><p>Best sellers, reorder rates and how big an order is.</p></div>
+        <div class="qg"><h3>Customers</h3><div class="qs">Q5 · Q6 · Q10 · Q17 · Q19</div><p>Users, gaps between orders, loyalty and aisle reorder rates.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 data -->
+  <section class="block" id="data">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">02 / data</div><h2>Five tables joined in one model, checked before use.</h2></div>
+        <p>All relationships are one-to-many and filter in a single direction. The order lines table sits in the middle as the fact table, with products and orders on either side.</p>
+      </div>
+
+      <div class="model-wrap">
+        <div class="model" role="img" aria-label="Data model: aisles and departments link to products; products and orders link to order_products_train">
+          <div class="col">
+            <div class="tbl"><div class="t">aisles <span>134</span></div><div class="k">key: <b>aisle_id</b></div></div>
+            <div class="tbl"><div class="t">departments <span>21</span></div><div class="k">key: <b>department_id</b></div></div>
+          </div>
+          <div class="links"><div class="link"></div><div class="link"></div></div>
+          <div class="col">
+            <div class="tbl"><div class="t">products <span>49,355</span></div><div class="k">key: <b>product_id</b><br>aisle_id · department_id</div></div>
+            <div class="tbl fact"><div class="t">order_products_train <span>1,048,575</span></div><div class="k">key: <b>order_id + product_id</b><br>add_to_cart_order · reordered</div></div>
+          </div>
+          <div class="links"><div class="link"></div></div>
+          <div class="col">
+            <div class="tbl"><div class="t">orders <span>1,048,575</span></div><div class="k">key: <b>order_id</b><br>user_id · order_dow · order_hour_of_day · days_since_prior_order</div></div>
+          </div>
+        </div>
+        <p class="model-note">Row counts shown on each table. products → order_products_train and orders → order_products_train are both 1 → *.</p>
+      </div>
+
+      <div class="two">
+        <div class="panel">
+          <div class="panel-h"><span>Data checks and how I handled them</span><span>6 issues</span></div>
+          <div class="tscroll">
+            <table>
+              <thead><tr><th>Issue found</th><th>How I handled it</th></tr></thead>
+              <tbody>
+                <tr><td><span class="m">days_since_prior_order</span> blank for 63,100 first orders</td><td>Kept blank. A first order has no previous order.</td></tr>
+                <tr><td>1,254 products with aisle and department “missing”</td><td>Kept in totals, shown grey, left out of top-10 lists.</td></tr>
+                <tr><td>249 product IDs not in the products table (0.65% of rows)</td><td>Filtered out as (Blank) in charts.</td></tr>
+                <tr><td>Only 30,252 orders appear in both order tables</td><td>Used those for the day-of-week and users-per-department questions.</td></tr>
+                <tr><td>Brief names <span class="m">order_products_prior</span></td><td>The database has <span class="m">order_products_train</span>, so I used that.</td></tr>
+                <tr><td><span class="m">order_dow</span> is a number 0–6</td><td>Added a Day Name column (0 = Sunday), sorted by <span class="m">order_dow</span>.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-h"><span>Key DAX measures and columns</span><span>Power BI</span></div>
+<pre class="dax"><span class="c">-- Measures</span>
+<span class="n">Total Orders</span> = DISTINCTCOUNT(order_products_train[order_id])
+<span class="n">Unique Users</span> = DISTINCTCOUNT(orders[user_id])
+<span class="n">Reorder Rate</span> = AVERAGE(order_products_train[reordered])
+<span class="n">Avg Products per Order</span> =
+    DIVIDE([Total Items Ordered], [Total Orders])
+<span class="n">Users per Department</span> =
+    CALCULATE(DISTINCTCOUNT(orders[user_id]),
+      CROSSFILTER(order_products_train[order_id],
+                  orders[order_id], BOTH))
+
+<span class="c">-- Columns and tables</span>
+<span class="n">Day Name</span> = SWITCH(orders[order_dow],
+    0,"Sunday", … 6,"Saturday")
+<span class="n">Order Sizes</span> = SUMMARIZE(order_products_train,
+    [order_id], "Size", COUNTROWS(…))
+<span class="n">User Gaps</span> = SUMMARIZE(orders, [user_id],
+    "Avg Gap", AVERAGE([days_since_prior_order]))</pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 dashboard -->
+  <section class="block" id="dashboard">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">03 / dashboard</div><h2>Eight report pages, one for each part of the brief.</h2></div>
+        <p>Each page answers a set of the 20 questions. Pick a page to see the screen and what it shows.</p>
+      </div>
+      <input type="radio" name="page" id="p-overview" class="sr" checked>
+      <input type="radio" name="page" id="p-catalogue" class="sr">
+      <input type="radio" name="page" id="p-time" class="sr">
+      <input type="radio" name="page" id="p-products" class="sr">
+      <input type="radio" name="page" id="p-baskets" class="sr">
+      <input type="radio" name="page" id="p-reorders" class="sr">
+      <input type="radio" name="page" id="p-customers" class="sr">
+      <input type="radio" name="page" id="p-insight" class="sr">
+      <div class="gallery-tabs">
+        <label class="tab" for="p-overview">Overview</label>
+        <label class="tab" for="p-catalogue">Catalogue</label>
+        <label class="tab" for="p-time">Time</label>
+        <label class="tab" for="p-products">Products</label>
+        <label class="tab" for="p-baskets">Baskets</label>
+        <label class="tab" for="p-reorders">Reorders</label>
+        <label class="tab" for="p-customers">Customers</label>
+        <label class="tab" for="p-insight">Insight</label>
+      </div>
+      <figure class="shot shot-overview" style="margin:0">
+        <div class="shot-frame"><img src="Overview.png" alt="Power BI Overview page" width="1444" height="810"></div>
+        <figcaption class="shot-cap">
+          <div class="pg">Page 1 of 8<b>Overview</b><span class="qs">Q1 · Q3</span></div>
+          <ul>
+            <li><b>49,355 products</b>, 59.85% reorder rate, 63,100 customers, 99,574 orders with products.</li>
+            <li>Candy chocolate has the most products (1,235), then ice cream (1,084) and vitamins (1,030).</li>
+            <li>Personal care (6,524), snacks (6,221) and pantry (5,331) are the biggest departments; bulk has only 38.</li>
+          </ul>
+        </figcaption>
+      </figure>
+      <figure class="shot shot-catalogue" style="margin:0">
+        <div class="shot-frame"><img src="Catelogue.png" alt="Power BI Catalogue page" width="1444" height="810" loading="lazy"></div>
+        <figcaption class="shot-cap">
+          <div class="pg">Page 2 of 8<b>Catalogue</b><span class="qs">Q2 · Q20</span></div>
+          <ul>
+            <li><b>21 departments</b> (20 named plus “missing”) and <b>134 aisles</b>.</li>
+            <li>The matrix shows the product count in every aisle under its department.</li>
+            <li>Personal care spreads 6,524 products over 17 aisles; pantry uses 12.</li>
+          </ul>
+        </figcaption>
+      </figure>
+      <figure class="shot shot-time" style="margin:0">
+        <div class="shot-frame"><img src="Time.png" alt="Power BI Time page" width="1444" height="810" loading="lazy"></div>
+        <figcaption class="shot-cap">
+          <div class="pg">Page 3 of 8<b>Time</b><span class="qs">Q7 · Q8 · Q15 · Q18</span></div>
+          <ul>
+            <li>Orders rise from 7 am and <b>peak at 10 am</b> with 88,228 orders.</li>
+            <li><b>Sunday</b> (183,939) and <b>Monday</b> (180,025) are busiest; Thursday is quietest.</li>
+            <li>Baskets are biggest on Sunday (11.6 items) and smallest on Wednesday (9.6).</li>
+          </ul>
+        </figcaption>
+      </figure>
+      <figure class="shot shot-products" style="margin:0">
+        <div class="shot-frame"><img src="Products.png" alt="Power BI Products page" width="1444" height="810" loading="lazy"></div>
+        <figcaption class="shot-cap">
+          <div class="pg">Page 4 of 8<b>Products</b><span class="qs">Q4 · Q9 · Q12 · Q13</span></div>
+          <ul>
+            <li><b>Banana</b> is the most ordered product, then Bag of Organic Bananas (11,639).</li>
+            <li>2% Lactose Free Milk has the highest reorder rate (92%); 6 of the top 10 are milk.</li>
+            <li>19,952 products were reordered more than once (54%). The table lists the top repeat product in each department.</li>
+          </ul>
+        </figcaption>
+      </figure>
+      <figure class="shot shot-baskets" style="margin:0">
+        <div class="shot-frame"><img src="Baskets.png" alt="Power BI Baskets page" width="1444" height="810" loading="lazy"></div>
+        <figcaption class="shot-cap">
+          <div class="pg">Page 5 of 8<b>Baskets</b><span class="qs">Q11 · Q14 · Q16</span></div>
+          <ul>
+            <li>An order has <b>10.5 products</b> on average (median 9).</li>
+            <li>The most common size is 5 items; the largest order has 80.</li>
+            <li>60% of orders have 10 items or fewer; only 2.5% have more than 30.</li>
+          </ul>
+        </figcaption>
+      </figure>
+      <figure class="shot shot-reorders" style="margin:0">
+        <div class="shot-frame"><img src="Reorders.png" alt="Power BI Reorders page" width="1444" height="810" loading="lazy"></div>
+        <figcaption class="shot-cap">
+          <div class="pg">Page 6 of 8<b>Reorders</b><span class="qs">Q17</span></div>
+          <ul>
+            <li><b>Milk</b> has the highest aisle reorder rate (79.2%), then water and fresh fruit.</li>
+            <li><b>Spices and seasonings</b> is lowest (16.5%), with baking and kitchen supplies.</li>
+            <li>The average aisle reorder rate is about 50%.</li>
+          </ul>
+        </figcaption>
+      </figure>
+      <figure class="shot shot-customers" style="margin:0">
+        <div class="shot-frame"><img src="Customers.png" alt="Power BI Customers page" width="1444" height="810" loading="lazy"></div>
+        <figcaption class="shot-cap">
+          <div class="pg">Page 7 of 8<b>Customers</b><span class="qs">Q5 · Q6 · Q10 · Q19</span></div>
+          <ul>
+            <li><b>63,100 unique users</b>, ordering every 15.4 days on average.</li>
+            <li>The biggest group orders every 8–14 days (21,379 users).</li>
+            <li>Produce reaches 22,303 users and dairy eggs 20,153; 431 users are tied at 100 orders.</li>
+          </ul>
+        </figcaption>
+      </figure>
+      <figure class="shot shot-insight" style="margin:0">
+        <div class="shot-frame"><img src="Insight.png" alt="Power BI Insight page" width="1444" height="810" loading="lazy"></div>
+        <figcaption class="shot-cap">
+          <div class="pg">Page 8 of 8<b>Insight</b><span class="qs">Summary</span></div>
+          <ul>
+            <li>Key insights in plain language for management.</li>
+            <li>Six recommendations grouped by area: stock, operations, marketing, retention, growth and loyalty.</li>
+            <li>Data notes covering the export limit, missing aisles and the Sunday assumption.</li>
+          </ul>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 04 findings -->
+  <section class="block" id="findings">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">04 / findings</div><h2>Customers come back for the same fresh staples, at predictable times.</h2></div>
+        <p>Banana is the top product with 14,136 orders. All ten best sellers are fruit or vegetables, and six of them are organic.</p>
+      </div>
+      <div class="findings">
+        <div class="finding"><div class="big">59.9%</div><h3>Fresh food is the business</h3><p>Six in ten items in every basket are repeat buys. Milk is the most loyal aisle at 79%, and 2% lactose-free milk is reordered 92% of the time. Produce reaches 74% of matched customers.</p></div>
+        <div class="finding"><div class="big">35%</div><h3>Demand starts the week high</h3><p>Sunday (183,939 orders) and Monday (180,025) carry a third of the week. Orders climb from 7 am and peak at 10 am with 88,228 orders. The store is almost idle between midnight and 6 am.</p></div>
+        <div class="finding"><div class="big">11.6</div><h3>Weekend baskets are bigger</h3><p>Sunday orders average 11.6 items against 9.6 on Wednesday. Most orders are small top-ups: the average is 10.5, the most common size is 5, and the largest is 80.</p></div>
+        <div class="finding"><div class="big">431</div><h3>A loyal core shops far more often</h3><p>431 customers have placed 100 orders each, the highest in the data. With the 7,489 weekly shoppers they are the most valuable group. The average customer has 16.6 orders.</p></div>
+      </div>
+
+      <details class="qa">
+        <summary>All 20 questions and answers <span>show table</span></summary>
+        <div class="tscroll">
+          <table>
+            <thead><tr><th>Q</th><th>Question</th><th>Answer</th></tr></thead>
+            <tbody>
+              <tr><td>Q1</td><td>Top 10 aisles by products</td><td>Candy chocolate 1,235; ice cream 1,084; vitamins 1,030</td></tr>
+              <tr><td>Q2</td><td>Unique departments</td><td>21 (20 named + “missing”)</td></tr>
+              <tr><td>Q3</td><td>Products across departments</td><td>Personal care 6,524; snacks 6,221; bulk 38</td></tr>
+              <tr><td>Q4</td><td>Top reorder rates (50+ orders)</td><td>2% Lactose Free Milk 92.0%; 6 of 10 are milk</td></tr>
+              <tr><td>Q5</td><td>Unique users</td><td>63,100</td></tr>
+              <tr><td>Q6</td><td>Avg days between orders per user</td><td>15.4 days (median 14.9)</td></tr>
+              <tr><td>Q7</td><td>Peak hours</td><td>10 am (88,228 orders); busy 10 am–4 pm</td></tr>
+              <tr><td>Q8</td><td>Orders by day of week</td><td>Sunday 183,939 and Monday 180,025 highest</td></tr>
+              <tr><td>Q9</td><td>Top 10 most ordered products</td><td>Banana 14,136; Bag of Organic Bananas 11,639</td></tr>
+              <tr><td>Q10</td><td>Users per department</td><td>Produce 22,303; dairy eggs 20,153</td></tr>
+              <tr><td>Q11</td><td>Avg products per order</td><td>10.5 (median 9, max 80)</td></tr>
+              <tr><td>Q12</td><td>Most reordered per department</td><td>Banana (produce) 12,461; Organic Whole Milk 3,154</td></tr>
+              <tr><td>Q13</td><td>Products reordered more than once</td><td>19,952 of 36,615 ordered products (54%)</td></tr>
+              <tr><td>Q14</td><td>Avg products added to cart per order</td><td>10.5; average cart position 8.7</td></tr>
+              <tr><td>Q15</td><td>Orders by hour of day</td><td>Low at night (3 am: 1,649), rise from 7 am, fall after 4 pm</td></tr>
+              <tr><td>Q16</td><td>Order size distribution</td><td>1–5 items: 29,956 orders; 60% have ≤ 10 items</td></tr>
+              <tr><td>Q17</td><td>Avg reorder rate per aisle</td><td>Milk 79.2% highest; spices 16.5% lowest; average about 50%</td></tr>
+              <tr><td>Q18</td><td>Avg order size by day</td><td>Sunday 11.6 items; Wednesday 9.6</td></tr>
+              <tr><td>Q19</td><td>Top 10 users by orders</td><td>431 users tied at 100 orders; average 16.6</td></tr>
+              <tr><td>Q20</td><td>Products per aisle and department</td><td>134 aisles; personal care 17 aisles, 6,524 products</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 05 actions -->
+  <section class="block" id="actions">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">05 / recommendations</div><h2>Six actions, in the order I recommended them.</h2></div>
+        <p>Start with the two that protect today’s repeat business, then add the four that grow it.</p>
+      </div>
+      <div class="panel">
+        <div class="tscroll">
+          <table class="actions">
+            <thead><tr><th>#</th><th>Action</th><th>Why</th><th>Expected benefit</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td><b>Never run out of the top staples</b><span>Milk, bananas, berries, eggs and bread. Add extra stock before Sunday and Monday.</span><br><span class="phase protect">Protect</span></td><td>These products are reordered 70–92% of the time and drive the busiest days.</td><td>Fewer missed orders and disappointed regulars.</td></tr>
+              <tr><td>2</td><td><b>Add delivery slots and staff at peak</b><span>10 am to 5 pm, and on Sunday and Monday.</span><br><span class="phase protect">Protect</span></td><td>57% of orders arrive in this window; Sunday and Monday carry 35% of the week.</td><td>Shorter delivery times and better satisfaction.</td></tr>
+              <tr><td>3</td><td><b>Weekend “big basket” offers</b><span>Free delivery over a set basket size, or meal bundles.</span><br><span class="phase">Grow</span></td><td>Customers already buy 11–12 items at the weekend.</td><td>Larger weekend baskets.</td></tr>
+              <tr><td>4</td><td><b>Reorder reminders around day 14</b><span>Sent after a customer’s last order, with their usual items ready to add.</span><br><span class="phase">Grow</span></td><td>The typical customer reorders every 15 days.</td><td>More customers return on time; win back the 22–30 day group.</td></tr>
+              <tr><td>5</td><td><b>A loyalty programme</b><span>For the 431 most frequent customers and the 7,489 weekly shoppers.</span><br><span class="phase">Grow</span></td><td>A small group places a large share of orders.</td><td>Keeps the most valuable customers.</td></tr>
+              <tr><td>6</td><td><b>Bundle low-reorder aisles with staples</b><span>Spices, baking, kitchen, health and beauty.</span><br><span class="phase">Grow</span></td><td>These aisles are reordered only 16–27% of the time.</td><td>More items per basket from occasional categories.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 walkthrough -->
+  <section class="block" id="walkthrough">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">06 / walkthrough</div><h2>A guided tour of the report.</h2></div>
+        <p>A recorded walkthrough of the Power BI dashboard, page by page, explaining what each chart shows and what it means for the business.</p>
+      </div>
+      <div class="video">
+        <video id="walkVideo" controls preload="metadata" playsinline poster="assets/img/overview.webp">
+          <source src="assets/walkthrough.mp4" type="video/mp4">
+        </video>
+        <div class="cap"><span>Report walkthrough · Power BI</span><span>9 min 28 s</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 limits -->
+  <section class="block" id="limits">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><div class="eyebrow">07 / caveats and next steps</div><h2>What the data can’t tell us yet.</h2></div>
+        <p>The data has no prices, so performance is measured by orders and reorders rather than revenue. Exact totals would be somewhat higher with the complete history.</p>
+      </div>
+      <div class="limits">
+        <div class="panel">
+          <div class="panel-h"><span>Limitations</span></div>
+          <ul>
+            <li>The orders and order lines tables stop at <b>1,048,575 rows</b>, the database export limit.</li>
+            <li>Only <b>30,252 orders</b> appear in both order tables; Q10 and Q18 use these.</li>
+            <li><b>1,254 products</b> have no aisle or department, and 249 product IDs are unknown.</li>
+            <li><span class="mono">order_dow</span> 0 is assumed to be Sunday; <span class="mono">days_since_prior_order</span> is capped at 30.</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <div class="panel-h"><span>Next steps for the client</span></div>
+          <ol>
+            <li>Agree which of the six actions to start this quarter.</li>
+            <li>Share the Power BI dashboard with the stock, delivery and marketing teams.</li>
+            <li>Pilot the <b>14-day reorder reminder</b> and measure the return rate.</li>
+            <li>Refresh the analysis with the full order history once it is available.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Akram Ali · Data analyst · Pune</span>
+    <span>Grocery Basket Insights · CDACL-006 · Built in Power BI</span>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
